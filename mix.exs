@@ -1,7 +1,7 @@
 defmodule Airports.Mixfile do
   use Mix.Project
 
-  @project_url "https://github.com/martide/airports"
+  @project_url "https://github.com/nerds-and-company/airports"
 
   def project do
     [
@@ -41,11 +41,6 @@ defmodule Airports.Mixfile do
   end
 
   defp package do
-    [
-      maintainers: ["Martide"],
-      licenses: ["Apache-2.0"],
-      links: %{"GitHub" => @project_url},
-      files: ~w(mix.exs README.md lib)
-    ]
+    [maintainers: ["Don Pinkster"], licenses: ["MIT"], links: %{"GitHub" => @project_url}]
   end
 end
