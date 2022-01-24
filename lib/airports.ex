@@ -1,8 +1,13 @@
-defmodule Airports do
-  data_file = Path.join([__DIR__, "../priv", "airports.dat"])
+NimbleCSV.define(AirportsParser, separator: ",", escape: "\"")
 
-  @airports File.stream!(data_file, [], :line)
-            |> CSV.decode()
+defmodule Airports do
+  @moduledoc """
+  Airports main API
+  """
+  @airports [__DIR__, "../priv", "airports.dat"]
+            |> Path.join()
+            |> File.stream!([], :line)
+            |> AirportsParser.parse_stream(skip_headers: false)
             |> Stream.map(fn line ->
               [
                 _,
@@ -47,7 +52,5 @@ defmodule Airports do
             end)
             |> Enum.to_list()
 
-  def all() do
-    @airports
-  end
+  def all, do: @airports
 end
