@@ -1,6 +1,6 @@
 # Airports
 
- Airports is a collection of all known airports. Data source is https://openflights.org/data.html
+ Airports is a collection of all known airports. Data source is https://github.com/davidmegginson/ourairports-data
 
 ## Installation
 
