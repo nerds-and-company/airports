@@ -3,7 +3,7 @@ defmodule AirportsTest do
 
   test "all/0 returns all the airports" do
     lines_count_from_source =
-      [__DIR__, "../priv", "airports.dat"]
+      [__DIR__, "../priv", "airports.csv"]
       |> Path.join()
       |> File.stream!([], :line)
       |> Enum.to_list()

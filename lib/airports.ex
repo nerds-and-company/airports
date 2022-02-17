@@ -4,7 +4,7 @@ defmodule Airports do
   @moduledoc """
   Airports main API
   """
-  @airports [__DIR__, "../priv", "airports.dat"]
+  @airports [__DIR__, "../priv", "airports.csv"]
             |> Path.join()
             |> File.stream!([], :line)
             |> AirportsParser.parse_stream(skip_headers: false)
