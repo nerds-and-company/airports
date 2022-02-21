@@ -1,6 +1,6 @@
 # Airports
 
- Airports is a collection of all known airports. Data source is https://openflights.org/data.html
+ Airports is a collection of all known airports. Data source is https://github.com/davidmegginson/ourairports-data
 
 ## Installation
 
@@ -9,7 +9,7 @@ by adding `airports` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:airports, "~> 0.1.0"}]
+  [{:airports, "~> 1.0"}]
 end
 ```
 
