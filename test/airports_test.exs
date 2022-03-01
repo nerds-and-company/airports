@@ -7,6 +7,8 @@ defmodule AirportsTest do
       |> Path.join()
       |> File.stream!([], :line)
       |> Enum.to_list()
+      # Remove header
+      |> List.delete_at(0)
       |> Enum.count()
 
     assert Enum.count(Airports.all()) == lines_count_from_source
