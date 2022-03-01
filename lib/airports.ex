@@ -7,7 +7,7 @@ defmodule Airports do
   @airports [__DIR__, "../priv", "airports.csv"]
             |> Path.join()
             |> File.stream!([], :line)
-            |> AirportsParser.parse_stream(skip_headers: false)
+            |> AirportsParser.parse_stream(skip_headers: true)
             |> Stream.map(fn line ->
               [
                 _,
