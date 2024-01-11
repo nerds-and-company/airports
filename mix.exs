@@ -27,10 +27,11 @@ defmodule Airports.Mixfile do
 
   defp deps do
     [
-      {:nimble_csv, "~> 1.1"},
+      {:castore, "~> 1.0"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.12", only: :test},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:nimble_csv, "~> 1.1"},
     ]
   end
 
