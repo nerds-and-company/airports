@@ -1,4 +1,5 @@
 defmodule Airports.Airport do
+  @type t :: %__MODULE__{}
   defstruct [
     :ident,
     :type,

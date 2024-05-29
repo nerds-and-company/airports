@@ -4,6 +4,8 @@ defmodule Airports do
   @moduledoc """
   Airports main API
   """
+  alias Airports.Airport
+
   @airports [__DIR__, "../priv", "airports.csv"]
             |> Path.join()
             |> File.stream!([], :line)
@@ -30,7 +32,7 @@ defmodule Airports do
                 keywords
               ] = line
 
-              %Airports.Airport{
+              %Airport{
                 ident: ident,
                 type: type,
                 name: name,
@@ -52,5 +54,23 @@ defmodule Airports do
             end)
             |> Enum.to_list()
 
+  @spec all() :: [Airport.t()]
   def all, do: @airports
+
+  @spec get_airport(String.t()) :: Airport.t() | nil
+  def get_airport(iata_code) do
+    Enum.find(all(), &(&1.iata_code == iata_code))
+  end
+
+  @spec get_timezone(String.t()) :: String.t() | nil
+  def get_timezone(iata_code) do
+    with %Airport{longitude: long, latitude: lat} <- get_airport(iata_code),
+         {long, _} <- Float.parse(long),
+         {lat, _} <- Float.parse(lat),
+         {:ok, tz} <- TzWorld.timezone_at({long, lat}) do
+      tz
+    else
+      _ -> nil
+    end
+  end
 end
