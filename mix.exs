@@ -11,6 +11,7 @@ defmodule Airports.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      aliases: aliases(),
       description: description(),
       package: package(),
       source_url: @project_url,
@@ -22,7 +23,7 @@ defmodule Airports.Mixfile do
   end
 
   def application do
-    [mod: {Airports.Application, []}, extra_applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   defp deps do
@@ -44,5 +45,9 @@ defmodule Airports.Mixfile do
 
   defp package do
     [maintainers: ["Don Pinkster"], licenses: ["MIT"], links: %{"GitHub" => @project_url}]
+  end
+
+  defp aliases do
+    ["airports.update": ["tz_world.update", "airports.update"]]
   end
 end

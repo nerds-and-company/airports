@@ -17,6 +17,7 @@ defmodule Airports.Airport do
     :local_code,
     :home_link,
     :wikipedia_link,
-    :keywords
+    :keywords,
+    :timezone_id
   ]
 end
