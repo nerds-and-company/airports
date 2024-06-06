@@ -11,6 +11,7 @@ defmodule Airports.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      aliases: aliases(),
       description: description(),
       package: package(),
       source_url: @project_url,
@@ -32,6 +33,7 @@ defmodule Airports.Mixfile do
       {:excoveralls, "~> 0.12", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:nimble_csv, "~> 1.1"},
+      {:tz_world, "~> 1.3"}
     ]
   end
 
@@ -43,5 +45,9 @@ defmodule Airports.Mixfile do
 
   defp package do
     [maintainers: ["Don Pinkster"], licenses: ["MIT"], links: %{"GitHub" => @project_url}]
+  end
+
+  defp aliases do
+    ["airports.update": ["tz_world.update", "airports.update"]]
   end
 end
