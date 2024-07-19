@@ -7,7 +7,7 @@ env:
 
 # https://github.com/elixir-lang/elixir/blob/master/lib/elixir/pages/compatibility-and-deprecations.md
 jobs:
-  elixir_1_16:
+  elixir_1_17:
     runs-on: ubuntu-latest
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
