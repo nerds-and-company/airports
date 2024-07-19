@@ -1,4 +1,7 @@
 # https://github.com/elixir-lang/elixir/releases
-elixir 1.16.1-otp-26
+
+elixir 1.17.2-otp-27
+
 # https://github.com/erlang/otp/releases
-erlang 26.2.3
+
+erlang 27.0.1
