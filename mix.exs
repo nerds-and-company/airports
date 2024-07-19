@@ -28,7 +28,7 @@ defmodule Airports.Mixfile do
 
   defp deps do
     [
-      {:castore, "~> 1.0"},
+      {:castore, "~> 1.0", only: :test},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.12", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev},

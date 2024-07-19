@@ -6,6 +6,8 @@
 - Added dependabot
 - Added Github Actions
 - Swap csv for nimble_csv
+- Add timezone information accessible through the `timezone_id` field on the `Airport` struct
+- Set `skip_headers: true` when parsing airports from source file
 
 ## v0.1.0 (2017-06-09)
 
