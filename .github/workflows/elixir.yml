@@ -12,6 +12,23 @@ jobs:
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
       matrix:
+        otp: [25.x, 26.x, 27.x]
+        elixir: [1.17.x]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+      - run: mix do deps.get, compile --warnings-as-errors
+      - run: mix format --dry-run --check-formatted
+      - run: mix coveralls.github
+
+  elixir_1_16:
+    runs-on: ubuntu-latest
+    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+    strategy:
+      matrix:
         otp: [24.x, 25.x, 26.x]
         elixir: [1.16.x]
     steps:
