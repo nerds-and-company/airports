@@ -13,9 +13,9 @@ def deps do
 end
 ```
 
-## Installing the Airports data
+## Adding timezone to the Airports data
 
-Airports depends on [tz_world](https://github.com/kimlai/tz_world) for timezone data. To install airports with timezone data, run:
+Airports depends on [tz_world](https://github.com/kimlai/tz_world) for timezone data. After updating `priv/airports.csv`, run the following to add timezone data:
 
 ```elixir
 mix airports.update
