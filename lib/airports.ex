@@ -1,56 +1,27 @@
-NimbleCSV.define(AirportsParser, separator: ",", escape: "\"")
-
 defmodule Airports do
   @moduledoc """
   Airports main API
   """
-  @airports [__DIR__, "../priv", "airports.csv"]
-            |> Path.join()
-            |> File.stream!([], :line)
-            |> AirportsParser.parse_stream(skip_headers: false)
-            |> Stream.map(fn line ->
-              [
-                _,
-                ident,
-                type,
-                name,
-                latitude,
-                longitude,
-                elevation_ft,
-                continent,
-                iso_country,
-                iso_region,
-                municipality,
-                scheduled_service,
-                gps_code,
-                iata_code,
-                local_code,
-                home_link,
-                wikipedia_link,
-                keywords
-              ] = line
+  alias Airports.Airport
 
-              %Airports.Airport{
-                ident: ident,
-                type: type,
-                name: name,
-                latitude: latitude,
-                longitude: longitude,
-                elevation_ft: elevation_ft,
-                continent: continent,
-                iso_country: iso_country,
-                iso_region: iso_region,
-                municipality: municipality,
-                scheduled_service: scheduled_service,
-                gps_code: gps_code,
-                iata_code: iata_code,
-                local_code: local_code,
-                home_link: home_link,
-                wikipedia_link: wikipedia_link,
-                keywords: keywords
-              }
-            end)
-            |> Enum.to_list()
+  @source_path Airports.Loader.source_path()
+  @airports if File.exists?(@source_path), do: Airports.Loader.run(), else: []
 
+  @spec all() :: [Airport.t()]
   def all, do: @airports
+
+  @spec get_airport(String.t()) :: Airport.t() | nil
+  def get_airport(iata_code) do
+    Enum.find(all(), &(&1.iata_code == iata_code))
+  end
+
+  @spec get_timezone(String.t()) :: String.t() | nil
+  def get_timezone(iata_code) do
+    iata_code
+    |> get_airport()
+    |> case do
+      nil -> nil
+      airport -> airport.timezone_id
+    end
+  end
 end

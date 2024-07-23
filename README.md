@@ -1,6 +1,6 @@
 # Airports
 
- Airports is a collection of all known airports. Data source is https://github.com/davidmegginson/ourairports-data
+Airports is a collection of all known airports. Data source is https://github.com/davidmegginson/ourairports-data
 
 ## Installation
 
@@ -11,6 +11,14 @@ by adding `airports` to your list of dependencies in `mix.exs`:
 def deps do
   [{:airports, "~> 1.0"}]
 end
+```
+
+## Installing the Airports data
+
+Airports depends on [tz_world](https://github.com/kimlai/tz_world) for timezone data. To install airports with timezone data, run:
+
+```elixir
+mix airports.update
 ```
 
 ## Contributing

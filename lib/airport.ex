@@ -1,4 +1,5 @@
 defmodule Airports.Airport do
+  @type t :: %__MODULE__{}
   defstruct [
     :ident,
     :type,
@@ -16,6 +17,7 @@ defmodule Airports.Airport do
     :local_code,
     :home_link,
     :wikipedia_link,
-    :keywords
+    :keywords,
+    :timezone_id
   ]
 end
