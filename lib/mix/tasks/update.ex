@@ -5,20 +5,25 @@ defmodule Mix.Tasks.Airports.Update do
 
   @shortdoc "Update airports with timezone data"
 
+  @source_link "https://raw.githubusercontent.com/davidmegginson/ourairports-data/refs/heads/main/airports.csv"
   @source_file "airports.csv"
   @destination_path Path.join([:code.priv_dir(:airports), "airports_with_tz.csv"])
 
   use Mix.Task
   require Logger
+  alias Airports.Downloader
 
   def run(_args) do
     restart_backends()
     Process.put(:lines, 0)
 
-    stream =
-      [:code.priv_dir(:airports), @source_file]
-      |> Path.join()
-      |> File.stream!()
+    source_file = Path.join([:code.priv_dir(:airports), @source_file])
+
+    Mix.shell().info("Downloading airports from #{@source_link}...")
+    :ok = download_source(@source_link, source_file)
+    Mix.shell().info("Successfully downloaded airports data!")
+
+    stream = File.stream!(source_file)
 
     total_lines = Enum.count(stream)
 
@@ -83,5 +88,12 @@ defmodule Mix.Tasks.Airports.Update do
     GenServer.stop(TzWorld.Backend.Dets)
     TzWorld.Backend.Memory.start_link()
     TzWorld.Backend.Dets.start_link()
+  end
+
+  defp download_source(url, output_path) do
+    case Downloader.download(url, output_path) do
+      {:error, reason} -> Mix.shell().error(reason)
+      result -> result
+    end
   end
 end
