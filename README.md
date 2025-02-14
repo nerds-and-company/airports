@@ -13,13 +13,15 @@ def deps do
 end
 ```
 
-## Adding timezone to the Airports data
+## Updating airports data with timezone
 
-Airports depends on [tz_world](https://github.com/kimlai/tz_world) for timezone data. After updating `priv/airports.csv`, run the following to add timezone data:
+Airports depends on [tz_world](https://github.com/kimlai/tz_world) for timezone data. Update airports and timezone data by running the following command:
 
 ```elixir
 mix airports.update
 ```
+
+This command will automatically download the latest airports data from the data source, put timezone data for each airport, and save it to `priv/airports.csv` and `priv/airports_with_tz.csv` respectively.
 
 ## Contributing
 
