@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## 1.1.0
 
 - Update README
 - Update airports & timezone csv by running `mix airports.update`
